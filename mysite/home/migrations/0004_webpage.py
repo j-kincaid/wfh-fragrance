@@ -10,23 +10,61 @@ import wagtail.images.blocks
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('wagtailimages', '0023_add_choose_permissions'),
-        ('wagtailcore', '0066_collection_management_permissions'),
-        ('home', '0003_homepage_body'),
+        ("wagtailimages", "0023_add_choose_permissions"),
+        ("wagtailcore", "0066_collection_management_permissions"),
+        ("home", "0003_homepage_body"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='WebPage',
+            name="WebPage",
             fields=[
-                ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.page')),
-                ('subtitle', models.CharField(blank=True, max_length=255, null=True)),
-                ('body', wagtail.core.fields.StreamField([('text', wagtail.core.blocks.RichTextBlock(blank=True, null=True)), ('image', wagtail.images.blocks.ImageChooserBlock(blank=True, null=True))], blank=True)),
-                ('cover_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.image')),
+                (
+                    "page_ptr",
+                    models.OneToOneField(
+                        auto_created=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        parent_link=True,
+                        primary_key=True,
+                        serialize=False,
+                        to="wagtailcore.page",
+                    ),
+                ),
+                ("subtitle", models.CharField(blank=True, max_length=255, null=True)),
+                (
+                    "body",
+                    wagtail.core.fields.StreamField(
+                        [
+                            (
+                                "text",
+                                wagtail.core.blocks.RichTextBlock(
+                                    blank=True, null=True
+                                ),
+                            ),
+                            (
+                                "image",
+                                wagtail.images.blocks.ImageChooserBlock(
+                                    blank=True, null=True
+                                ),
+                            ),
+                        ],
+                        blank=True,
+                    ),
+                ),
+                (
+                    "cover_image",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="+",
+                        to="wagtailimages.image",
+                    ),
+                ),
             ],
             options={
-                'abstract': False,
+                "abstract": False,
             },
-            bases=('wagtailcore.page',),
+            bases=("wagtailcore.page",),
         ),
     ]

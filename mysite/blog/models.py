@@ -12,9 +12,8 @@ from wagtail.search import index
 class BlogIndexPage(Page):
     intro = RichTextField(blank=True)
 
-    content_panels = Page.content_panels + [
-        FieldPanel('intro', classname="full")
-    ]
+    content_panels = Page.content_panels + [FieldPanel("intro", classname="full")]
+
 
 class BlogPage(Page):
     date = models.DateField("Post date")
@@ -22,12 +21,12 @@ class BlogPage(Page):
     body = RichTextField(blank=True)
 
     search_fields = Page.search_fields + [
-        index.SearchField('intro'),
-        index.SearchField('body')
+        index.SearchField("intro"),
+        index.SearchField("body"),
     ]
 
-    content_panels = Page.content_panels + [ 
-        FieldPanel('date'),
-        FieldPanel('intro'),
-        FieldPanel('body', classname="full"),
+    content_panels = Page.content_panels + [
+        FieldPanel("date"),
+        FieldPanel("intro"),
+        FieldPanel("body", classname="full"),
     ]
